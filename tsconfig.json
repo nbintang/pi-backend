@@ -7,8 +7,14 @@
       "ES2017",
       "DOM"
     ],
+    "skipLibCheck": true,
+    "noImplicitAny": true,
+    "strict": true,
     "downlevelIteration": true,
     "outDir": "dist",
     "esModuleInterop": true
-  }
+  },
+  "exclude": [
+    "node_modules"
+  ]
 }
