@@ -1,0 +1,14 @@
+{
+  "compilerOptions": {
+    "target": "ES2017",
+    "module": "commonjs",
+    "sourceMap": true,
+    "lib": [
+      "ES2017",
+      "DOM"
+    ],
+    "downlevelIteration": true,
+    "outDir": "dist",
+    "esModuleInterop": true
+  }
+}
