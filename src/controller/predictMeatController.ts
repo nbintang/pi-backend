@@ -3,6 +3,7 @@ import { HttpException } from "../utils/httpException";
 import { preprocessImage } from "../utils/preprocesssImage";
 import { Request, Response } from "express";
 import fs from 'fs';
+
 export const predictMeatController = async (req: Request, res: Response) => {
     if (!req.file) {
         res.status(400).send('No image uploaded.');

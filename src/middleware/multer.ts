@@ -8,7 +8,7 @@ const fileFilter = (req: Express.Request, file: Express.Multer.File, cb: multer.
   const isValid = ['.jpg', '.jpeg'].includes(ext);
 
   if (isValid) cb(null, true);
-  else cb(new HttpException('Only image files are allowed!'));
+  else cb(new HttpException('Only image files are allowed!', 400));
 };
 
 const storage = multer.diskStorage({

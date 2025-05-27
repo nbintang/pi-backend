@@ -13,7 +13,9 @@
   "author": "Google LLC",
   "license": "Apache-2.0",
   "dependencies": {
+    "@prisma/client": "^6.8.2",
     "@tensorflow/tfjs-node": "^4.22.0",
+    "cloudinary": "^2.6.1",
     "express": "^4.21.2",
     "multer": "^2.0.0"
   },
@@ -25,6 +27,7 @@
     "husky": "^9.1.7",
     "nodemon": "^3.1.0",
     "prettier": "^3.5.3",
+    "prisma": "^6.8.2",
     "typescript": "^5.4.5"
   },
   "lint-staged": {

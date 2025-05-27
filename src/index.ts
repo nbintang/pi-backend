@@ -4,14 +4,14 @@ import { errorHandler } from './utils/httpException';
 import * as tf from '@tensorflow/tfjs-node'; // Import TensorFlow.js for Node.js
 import { setModel } from './services/predictMeatServices';
 
+const basePath = "file://./";
 const app = express();
 const port = process.env.PORT || 3000;
 
-
 const startServer = async () => {
   try {
-    const model = await tf.loadGraphModel(`file:///home/user/test-model/tfjs_model/model.json`);
-    setModel(model); 
+    const model = await tf.loadGraphModel(`${basePath}ml-models/tfjs_model/model.json`);
+    setModel(model);
     app.use(express.json());
     app.use(errorHandler);
     app.use('/api', myRoutes);

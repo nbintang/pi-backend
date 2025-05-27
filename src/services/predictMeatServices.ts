@@ -8,7 +8,7 @@ export const setModel = (loadedModel: tf.GraphModel) => {
 };
 
 export const predictImage = async (tensor: tf.Tensor) => {
-    if (!model) throw new HttpException('Model not loaded yet.');
+    if (!model) throw new HttpException('Model not loaded yet.', 401);
     const prediction = model.predict(tensor) as tf.Tensor;
     const predictionArray = await prediction.data();
     const labels = ['Segar', 'Setengah Segar', 'Busuk'];
