@@ -1,10 +1,11 @@
-// src/utils/imageUtils.ts
-import * as tf from '@tensorflow/tfjs-node';
-import fs from 'fs';
+// utils/preprocesssImage.ts
+import * as tf from '@tensorflow/tfjs-node'; 
 
-export const preprocessImage = (path: string) => {
-  const imageBuffer = fs.readFileSync(path);
-  const decodedImage = tf.node.decodeImage(imageBuffer as Uint8Array, 3)
-    .resizeBilinear([224, 224]);
-  return decodedImage.expandDims(0).div(255.0); // Normalize
-};
+export  function preprocessImage(imageBuffer: Buffer): tf.Tensor {
+    const tensor = tf.node.decodeImage(imageBuffer);
+    const resizedTensor = tf.image.resizeBilinear(tensor, [224, 224]);
+    const normalizedTensor = resizedTensor.div(255.0); 
+    const expandedTensor = normalizedTensor.expandDims(0);
+    tf.dispose([tensor, resizedTensor, normalizedTensor]);
+    return expandedTensor;
+}

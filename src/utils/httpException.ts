@@ -1,7 +1,9 @@
+
 import { NextFunction, Request, Response } from "express";
 
 export class HttpException extends Error {
   public status: number;
+
   constructor(message: string, status = 500) {
     super(message);
     this.status = status;
@@ -9,17 +11,39 @@ export class HttpException extends Error {
   }
 }
 
+// Global error handler middleware
 export function errorHandler(
-  err: HttpException,
+  err: any,
   req: Request,
   res: Response,
   next: NextFunction
 ) {
   if (res.headersSent) return next(err);
-  const statusCode = err.status || 500;
-  res.status(statusCode).json({
-    status: statusCode,
+
+  // Handle known custom HttpException
+  if (err instanceof HttpException) {
+    return res.status(err.status).json({
+      status: err.status,
+      success: false,
+      message: err.message,
+    });
+  }
+
+  // Handle Multer errors
+  if (err.name === "MulterError") {
+    return res.status(400).json({
+      status: 400,
+      success: false,
+      message: err.message,
+    });
+  }
+
+  // Fallback: unknown error
+  console.error("Unhandled error:", err);
+
+  return res.status(500).json({
+    status: 500,
     success: false,
-    message: err.message || "Internal Server Error",
+    message: "Internal Server Error",
   });
 }

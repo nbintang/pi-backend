@@ -3,11 +3,11 @@
   "description": "Simple api sample in Node",
   "version": "1.0.0",
   "private": true,
-  "main": "index.js",
+  "main": "server.js",
   "scripts": {
     "dev": "nodemon --watch 'src/**' --ext 'ts,json' --exec 'npm run build && npm run start'",
     "build": "tsc",
-    "start": "node dist/index.js",
+    "start": "node dist/server.js",
     "prepare": "husky"
   },
   "author": "Google LLC",
@@ -16,8 +16,10 @@
     "@prisma/client": "^6.8.2",
     "@tensorflow/tfjs-node": "^4.22.0",
     "cloudinary": "^2.6.1",
+    "dotenv": "^16.5.0",
     "express": "^4.21.2",
-    "multer": "^2.0.0"
+    "multer": "^2.0.0",
+    "sharp": "^0.34.2"
   },
   "devDependencies": {
     "@commitlint/cli": "^19.8.1",
