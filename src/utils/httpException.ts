@@ -1,11 +1,13 @@
 
 import { NextFunction, Request, Response } from "express";
+import logger from "../lib/logger";
 
 export class HttpException extends Error {
   public status: number;
 
   constructor(message: string, status = 500) {
     super(message);
+    logger.error(message);
     this.status = status;
     Error.captureStackTrace(this, this.constructor);
   }
@@ -18,6 +20,7 @@ export function errorHandler(
   res: Response,
   next: NextFunction
 ) {
+  logger.error("Unhandled error:", err);
   if (res.headersSent) return next(err);
 
   // Handle known custom HttpException

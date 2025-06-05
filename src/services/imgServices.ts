@@ -12,11 +12,11 @@ export interface CloudinaryUploadOptions extends UploadApiOptions {
     public_id?: string;
 }
 
-export async function uploadImgServices({
+export const uploadImgServices = async ({
     buffer,
     folder,
     public_id,
-}: CloudinaryUploadOptions): Promise<CloudinaryResponse> {
+}: CloudinaryUploadOptions): Promise<CloudinaryResponse> => {
     return new Promise<CloudinaryResponse>((resolve, reject) => {
         cloudinary.uploader
             .upload_stream(
@@ -37,3 +37,4 @@ export async function uploadImgServices({
             .end(buffer);
     });
 }
+
